@@ -12,10 +12,10 @@ services:
             MYSQL_USER: ari100tel
             MYSQL_PASSWORD: lop00100pol
             MYSQL_DATABASE: Horb_db
-        healthcheck:
-            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-            timeout: 20s
-            retries: 10
+#        healthcheck:
+#            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+#            timeout: 20s
+#            retries: 10
 #        hostname: mysqldb
     app:
         image: ari100tel/os5:db_6
@@ -27,8 +27,9 @@ services:
             DB_USERNAME: ari100tel
             DB_PASSWORD: lop00100pol
         depends_on:
-            mysqldb:
-                condition: service_healthy
+           - mysqldb
+ #           mysqldb:
+  #              condition: service_healthy
 #        hostname: app
     
     node-exporter:
